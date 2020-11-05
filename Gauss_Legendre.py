@@ -1,5 +1,7 @@
 import math
-from decimal import Decimal
+from decimal import *
+
+getcontext().prec = 1000
 
 def gauss(a, b, t, p):
     new_a = (a + b) / 2
@@ -9,9 +11,11 @@ def gauss(a, b, t, p):
     return (new_a, new_b, new_t, new_p)
 
 def calc(a, b, t, p):
-    return ((a + b) ** 2) / (4 * t)
+    pi = ((a + b) ** 2) / (4 * t)
+    return pi
 
 def main():
+
     a = 1
     b = Decimal('0.5') * Decimal('2') ** Decimal('0.5')
     t = Decimal('0.25')
@@ -24,8 +28,12 @@ def main():
     count = 0
     
     for i in range(loop):
-        print(str(count)+ ":" + str(calc(*nums)))
+        #pi = calc(*nums)
+        #pi_length = len(str(pi))
+        #print(str(count)+ ":" + str(pi) + ", " + str(pi_length))
         nums = gauss(*nums)
-        count += 1
+        #count += 1
     
+    print(calc(*nums))
+
 main()

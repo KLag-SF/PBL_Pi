@@ -1,7 +1,7 @@
 import math
 from decimal import *
 
-getcontext().prec = 1000
+getcontext().prec = int(input("Set calculate precision limit. > "))
 
 def gauss(a, b, t, p):
     new_a = (a + b) / 2
@@ -32,8 +32,18 @@ def main():
         #pi_length = len(str(pi))
         #print(str(count)+ ":" + str(pi) + ", " + str(pi_length))
         nums = gauss(*nums)
-        #count += 1
+        count += 1
+        print(count)
     
-    print(calc(*nums))
+    print("Calculating pi...")
+    pi = calc(*nums)
+    pi_length = len(str(pi))
+    print(pi)
+    print(str(pi_length - 1) + " Digits calculated.")
+
+    mode = input("Save result?(Destination filename is \"pi.txt\") Y/N > ")
+    if mode.lower() == "y":
+        with open("pi.txt", "w") as f:
+            f.write(str(pi))
 
 main()

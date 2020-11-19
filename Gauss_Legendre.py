@@ -1,6 +1,7 @@
 from decimal import *
+import time
 
-getcontext().prec = int(input("Set calculate precision limit. > "))
+getcontext().prec = int(input("Set calculate precision limit. > ")) + 1
 
 def gauss(a, b, t, p):
     new_a = (a + b) / 2
@@ -24,10 +25,13 @@ def print_pi(s):
             print(end=' ')
             if count % 50 == 0:
                 print("\n  ", end='')
-                
+
     print()
 
 def main():
+
+    start = time.time()
+    total_time = 0
 
     a = 1
     b = Decimal('0.5') * Decimal('2') ** Decimal('0.5')
@@ -35,8 +39,10 @@ def main():
     p = 1
 
     nums = (a, b, t, p)
+    total_time += time.time() - start
 
     loop = int(input("Input number of times to calculate. > "))
+    start = time.time()
 
     count = 0
     
@@ -54,9 +60,13 @@ def main():
     print_pi(str(pi))
     print(str(pi_length - 1) + " Digits calculated.")
 
+    total_time += time.time() - start
+
     mode = input("Save result?(Destination filename is \"pi.txt\") Y/N > ")
     if mode.lower() == "y":
         with open("pi.txt", "w") as f:
             f.write(str(pi))
+
+    print("Calc time:" + str(total_time) + "[sec]")
 
 main()

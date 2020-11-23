@@ -54,7 +54,7 @@ def main():
     
     # 実際の繰り返し計算部(forループなので速度は遅い)
     for i in range(loop):
-        # gauss関数の引数をしてnums tupleを展開して渡す
+        # gauss関数の引数としてnums tupleを展開して渡す
         nums = gauss(*nums)
         count += 1
         print(count)
